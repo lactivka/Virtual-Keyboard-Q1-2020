@@ -9,7 +9,7 @@
   margin: auto auto 10px auto;
   padding: 10px;
   font-size: 18px;
-  color:#444;
+  color: #444;
 }
 
 .keyboard {
@@ -19,7 +19,7 @@
   height: 235px;
   padding: 35px;
   margin: auto;
-  background-color: rgb(146, 175, 138);
+  background-color: #92af8a;
 }
 
 .row {
@@ -40,16 +40,16 @@
   border: solid;
   border-color: gray;
   border-radius: 5px;
-    &:hover {
-      border: 5px outset;
-      padding-top: 5px;
-    }
+}
+.key:hover {
+  border: 5px outset;
+  padding-top: 5px;
 }
 
 .Backspace,
 .CapsLock,
 .ShiftLeft {
-    grid-column-end: span 7;
+  grid-column-end: span 7;
 }
 
 .Tab {
@@ -64,3 +64,5 @@
 .Space {
   grid-column-end: span 22;
 }
+
+/*# sourceMappingURL=style.css.map */

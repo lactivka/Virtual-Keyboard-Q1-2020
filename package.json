@@ -4,6 +4,7 @@
   "description": "",
   "main": "script.js",
   "scripts": {
+    "style": "sass --watch src/style.scss src/style.css",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix"
   },
