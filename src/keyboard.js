@@ -1,15 +1,16 @@
 import {
-  keysRU, codes, notPrint, keysUpRU, keysEn, keysUpEn,
+  keysRU, codes, notPrint, keysRUUp, keysEn, keysEnUp,
 }
   from './constants.js';
 
 export default class Keyboard {
   constructor() {
-    this.currentKeys = keysUpEn;
+    this.currentKeys = keysEn;
     this.keyboard = '';
     this.row = '';
     this.key = '';
     this.span = '';
+    this.isAvailable = true;
   }
 
   generateKeyboard() {
@@ -36,7 +37,7 @@ export default class Keyboard {
   }
 
   generateKeys(index) {
-    for (let j = 0; j < keysRU[index].length; j += 1) {
+    for (let j = 0; j < this.currentKeys[index].length; j += 1) {
       this.key = document.createElement('div');
       this.key.classList.add('key');
       this.key.classList.add(codes[index][j]);
@@ -62,6 +63,25 @@ export default class Keyboard {
       element.classList.add('notPrint');
     } else {
       element.classList.add('print');
+    }
+  }
+
+  changeLang() {
+    const renderedRows = Array.from(document.querySelectorAll('.row'));
+
+    this.currentKeys = this.currentKeys === keysEn ? keysRU : keysEn;
+    /* renderedRows.forEach((el, i) => {
+      Array.from(el.querySelectorAll('span')).forEach((elem, j) => {
+
+        elem.innerHTML = this.currentKeys[i][j];
+      });
+
+    }); */
+    for (let i = 0; i < renderedRows.length; i += 1) {
+      const array = Array.from(renderedRows[i].querySelectorAll('span'));
+      for (let j = 0; j < array.length; j += 1) {
+        array[j].innerHTML = this.currentKeys[i][j];
+      }
     }
   }
 }

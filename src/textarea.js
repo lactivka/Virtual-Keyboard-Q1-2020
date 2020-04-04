@@ -14,4 +14,8 @@ export default class Textarea {
     element.append(this.textarea);
     this.textarea.focus();
   }
+
+  print(key) {
+    this.textarea.value += key.querySelector('span').innerHTML;
+  }
 }
