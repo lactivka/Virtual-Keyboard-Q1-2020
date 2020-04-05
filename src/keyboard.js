@@ -5,11 +5,12 @@ import {
 
 export default class Keyboard {
   constructor() {
-    this.currentKeys = keysEn;
+    this.currentKeys = '';
     this.keyboard = '';
     this.row = '';
     this.key = '';
     this.span = '';
+    this.pressedKey = '';
     this.isAvailable = true;
   }
 
@@ -66,10 +67,20 @@ export default class Keyboard {
     }
   }
 
-  changeLang() {
-    const renderedRows = Array.from(document.querySelectorAll('.row'));
+  addPressed(key) {
+    this.pressedKey = key;
+    this.pressedKey.classList.add('pressed');
+  }
 
-    this.currentKeys = this.currentKeys === keysEn ? keysRU : keysEn;
+  togglePressed(key) {
+    this.pressedKey = key;
+    this.pressedKey.classList.toggle('pressed');
+  }
+
+  changeLang() {
+    const renderedRows = document.querySelectorAll('.row');
+
+    this.currentKeys = this.currentKeys[0][0] === keysEn[0][0] ? keysRU : keysEn;
     /* renderedRows.forEach((el, i) => {
       Array.from(el.querySelectorAll('span')).forEach((elem, j) => {
 
@@ -78,7 +89,7 @@ export default class Keyboard {
 
     }); */
     for (let i = 0; i < renderedRows.length; i += 1) {
-      const array = Array.from(renderedRows[i].querySelectorAll('span'));
+      const array = renderedRows[i].querySelectorAll('span');
       for (let j = 0; j < array.length; j += 1) {
         array[j].innerHTML = this.currentKeys[i][j];
       }

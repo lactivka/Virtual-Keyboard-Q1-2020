@@ -4,6 +4,7 @@
 
 import Textarea from './textarea.js';
 import Keyboard from './keyboard.js';
+import { keysEn } from './constants.js';
 
 export const wrapper = document.createElement('div');
 export const textarea = new Textarea();
@@ -20,6 +21,7 @@ export function init() {
   textarea.generateArea();
   textarea.renderArea(wrapper);
 
+  keyboard.currentKeys = JSON.parse(localStorage.getItem('language')) ? JSON.parse(localStorage.getItem('language')) : keysEn;
   keyboard.generateKeyboard();
   keyboard.renderKeyboard(wrapper);
 

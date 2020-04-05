@@ -3,7 +3,7 @@ import { init, keyboard, textarea } from './init.js';
 init();
 
 const controlLeft = document.querySelector('.ControlLeft');
-const shiftLeft = document.querySelector('.ShiftLeft');
+const altLeft = document.querySelector('.AltLeft');
 
 document.addEventListener('keydown', (event) => {
   event.preventDefault();
@@ -11,19 +11,19 @@ document.addEventListener('keydown', (event) => {
   if (keyboard.isAvailable === true) {
     const pressedKey = document.querySelector(`.${event.code}`);
 
+    if (pressedKey.classList.contains('CapsLock')) {
+      keyboard.togglePressed(pressedKey);
+    } else {
+      keyboard.addPressed(pressedKey);
+    }
+
     if (pressedKey.classList.contains('print')) {
       textarea.print(pressedKey);
     }
 
-    if (pressedKey.classList.contains('CapsLock')) {
-      pressedKey.classList.toggle('pressed');
-    } else {
-      pressedKey.classList.add('pressed');
-    }
-
     const pressedArray = Array.from(document.querySelectorAll('.pressed'));
 
-    if (pressedArray.includes(controlLeft) && pressedArray.includes(shiftLeft)) {
+    if (pressedArray.includes(controlLeft) && pressedArray.includes(altLeft)) {
       keyboard.isAvailable = false;
       keyboard.changeLang();
     }
@@ -54,3 +54,7 @@ document.addEventListener('mouseup', () => {
     }
   }
 });
+
+window.onbeforeunload = () => {
+  localStorage.setItem('language', JSON.stringify(keyboard.currentKeys));
+};
