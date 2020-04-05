@@ -18,7 +18,9 @@ document.addEventListener('keydown', (event) => {
     }
 
     if (pressedKey.classList.contains('print')) {
-      textarea.print(pressedKey);
+      textarea.print(pressedKey.querySelector('span').innerHTML);
+    } else {
+      keyboard.doNotPrintAction(pressedKey, textarea);
     }
 
     const pressedArray = Array.from(document.querySelectorAll('.pressed'));
@@ -38,11 +40,19 @@ document.addEventListener('keyup', () => {
 });
 
 document.addEventListener('mousedown', (event) => {
-  if (event.target.closest('.key')) {
-    if (event.target.closest('.key').classList.contains('CapsLock')) {
-      event.target.closest('.key').classList.toggle('pressed');
+  const pressedKey = event.target.closest('.key');
+
+  if (pressedKey.classList.contains('print')) {
+    textarea.print(pressedKey.querySelector('span').innerHTML);
+  } else {
+    keyboard.doNotPrintAction(pressedKey, textarea);
+  }
+
+  if (pressedKey) {
+    if (pressedKey.classList.contains('CapsLock')) {
+      keyboard.togglePressed(pressedKey);
     } else {
-      event.target.closest('.key').classList.add('pressed');
+      keyboard.addPressed(pressedKey);
     }
   }
 });

@@ -1,7 +1,6 @@
 /* import {
   keysUpRU, keysRU, keysUpEn, keysEn, codes,
 } from './constants.js'; */
-
 import Textarea from './textarea.js';
 import Keyboard from './keyboard.js';
 import { keysEn } from './constants.js';
@@ -9,7 +8,6 @@ import { keysEn } from './constants.js';
 export const wrapper = document.createElement('div');
 export const textarea = new Textarea();
 export const keyboard = new Keyboard();
-
 export const capsPressed = false;
 
 // generate and render page elements

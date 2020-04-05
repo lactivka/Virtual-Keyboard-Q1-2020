@@ -95,4 +95,21 @@ export default class Keyboard {
       }
     }
   }
+
+  doNotPrintAction(key, obj) {
+    this.pressedKey = key;
+
+    if (this.pressedKey.classList.contains('Enter')) {
+      obj.newRow();
+    }
+    if (this.pressedKey.classList.contains('Tab')) {
+      obj.print('    ');
+    }
+    if (this.pressedKey.classList.contains('Backspace')) {
+      obj.delSymbol('prev');
+    }
+    if (this.pressedKey.classList.contains('Delete')) {
+      obj.delSymbol('next');
+    }
+  }
 }
