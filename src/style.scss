@@ -8,9 +8,10 @@
   display: block;
   margin: auto auto 10px auto;
   padding: 10px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: monospace;
   font-size: 18px;
   color:#444;
+  word-break: break-all;
 }
 
 .keyboard {

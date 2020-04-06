@@ -45,4 +45,4 @@ export const codes = [
 ];
 
 // not print keys array
-export const notPrint = ['Backspace', 'Tab', 'Del', 'CapsLock', 'Enter', 'Shift', 'Ctrl', 'Win', 'Alt'];
+export const notPrint = ['Backspace', 'Tab', 'Del', 'CapsLock', 'Enter', 'Shift', '▲', '◄', '▼', '►', 'Ctrl', 'Win', 'Alt'];
