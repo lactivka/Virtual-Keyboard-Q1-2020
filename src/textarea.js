@@ -41,10 +41,12 @@ export default class Textarea {
     let end = '';
 
     if (symbol === 'prev') {
-      start = this.textarea.value.substring(0, position - 1);
-      end = this.textarea.value.substring(position);
-      this.textarea.value = start + end;
-      this.textarea.setSelectionRange(position - 1, position - 1);
+      if (position > 0) {
+        start = this.textarea.value.substring(0, position - 1);
+        end = this.textarea.value.substring(position);
+        this.textarea.value = start + end;
+        this.textarea.setSelectionRange(position - 1, position - 1);
+      }
     }
     if (symbol === 'next') {
       start = this.textarea.value.substring(0, position);
