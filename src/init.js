@@ -20,6 +20,7 @@ export function init() {
   keyboard.currentKeys = JSON.parse(localStorage.getItem('language')) ? JSON.parse(localStorage.getItem('language')) : keysEn;
   keyboard.generateKeyboard();
   keyboard.renderKeyboard(wrapper);
+  keyboard.printableKeys = document.querySelectorAll('.print');
 
   const os = document.createElement('p');
   os.className = 'information';

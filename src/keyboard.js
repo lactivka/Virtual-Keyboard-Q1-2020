@@ -15,6 +15,7 @@ export default class Keyboard {
     this.isAvailable = true;
     this.isCapsPressed = false;
     this.toUpper = false;
+    this.printableKeys = '';
   }
 
   generateKeyboard() {
@@ -81,12 +82,12 @@ export default class Keyboard {
   }
 
   changeLang() {
-    const printableKeys = document.querySelectorAll('.print');
+    //const printableKeys = document.querySelectorAll('.print');
     this.currentKeys = this.currentKeys[0][0] === keysEn[0][0] ? keysRU : keysEn;
     this.renderNewRows(this.currentKeys);
     if (this.toUpper) {
-      for (let i = 0; i < printableKeys.length; i += 1) {
-        printableKeys[i].querySelector('span').innerHTML = printableKeys[i].querySelector('span').innerHTML.toUpperCase();
+      for (let i = 0; i < this.printableKeys.length; i += 1) {
+        this.printableKeys[i].querySelector('span').innerHTML = this.printableKeys[i].querySelector('span').innerHTML.toUpperCase();
       }
     }
   }
@@ -103,7 +104,7 @@ export default class Keyboard {
 
   doNotPrintAction(key, textAreaObj) {
     this.pressedKey = key;
-    const printableKeys = document.querySelectorAll('.print');
+    //const printableKeys = document.querySelectorAll('.print');
 
     if (this.pressedKey.classList.contains('Enter')) {
       textAreaObj.newRow();
@@ -121,8 +122,8 @@ export default class Keyboard {
       this.currentKeysUp = this.currentKeys[0][0] === keysEn[0][0] ? keysEnUp : keysRUUp;
       this.renderNewRows(this.currentKeysUp);
       if (this.toUpper) {
-        for (let i = 0; i < printableKeys.length; i += 1) {
-          printableKeys[i].querySelector('span').innerHTML = printableKeys[i].querySelector('span').innerHTML.toLowerCase();
+        for (let i = 0; i < this.printableKeys.length; i += 1) {
+          this.printableKeys[i].querySelector('span').innerHTML = this.printableKeys[i].querySelector('span').innerHTML.toLowerCase();
         }
       }
     }
@@ -140,12 +141,12 @@ export default class Keyboard {
     }
     if (this.pressedKey.classList.contains('CapsLock')) {
       if (this.toUpper) {
-        for (let i = 0; i < printableKeys.length; i += 1) {
-          printableKeys[i].querySelector('span').innerHTML = printableKeys[i].querySelector('span').innerHTML.toUpperCase();
+        for (let i = 0; i < this.printableKeys.length; i += 1) {
+          this.printableKeys[i].querySelector('span').innerHTML = this.printableKeys[i].querySelector('span').innerHTML.toUpperCase();
         }
       } else {
-        for (let i = 0; i < printableKeys.length; i += 1) {
-          printableKeys[i].querySelector('span').innerHTML = printableKeys[i].querySelector('span').innerHTML.toLowerCase();
+        for (let i = 0; i < this.printableKeys.length; i += 1) {
+          this.printableKeys[i].querySelector('span').innerHTML = this.printableKeys[i].querySelector('span').innerHTML.toLowerCase();
         }
       }
     }

@@ -9,7 +9,7 @@ const altLeft = document.querySelector('.AltLeft');
 const capsLock = document.querySelector('.CapsLock');
 const shiftLeft = document.querySelector('.ShiftLeft');
 const shiftRight = document.querySelector('.ShiftRight');
-const printableKeys = document.querySelectorAll('.print');
+//const printableKeys = document.querySelectorAll('.print');
 
 document.addEventListener('keydown', (event) => {
   event.preventDefault();
@@ -36,7 +36,7 @@ document.addEventListener('keydown', (event) => {
 
     if (pressedArray.includes(controlLeft) && pressedArray.includes(altLeft)) {
       keyboard.isAvailable = false;
-      keyboard.changeLang(printableKeys);
+      keyboard.changeLang();
     }
   }
 });
@@ -55,8 +55,8 @@ document.addEventListener('keyup', (event) => {
       });
       keyboard.renderNewRows(keyboard.currentKeys);
       if (keyboard.toUpper) {
-        for (let i = 0; i < printableKeys.length; i += 1) {
-          printableKeys[i].querySelector('span').innerHTML = printableKeys[i].querySelector('span').innerHTML.toUpperCase();
+        for (let i = 0; i < keyboard.printableKeys.length; i += 1) {
+          keyboard.printableKeys[i].querySelector('span').innerHTML = keyboard.printableKeys[i].querySelector('span').innerHTML.toUpperCase();
         }
       }
     } else {
@@ -113,8 +113,8 @@ document.addEventListener('mouseup', () => {
     if (pressedKey.includes(shiftLeft) || pressedKey.includes(shiftRight)) {
       keyboard.renderNewRows(keyboard.currentKeys);
       if (keyboard.toUpper) {
-        for (let i = 0; i < printableKeys.length; i += 1) {
-          printableKeys[i].querySelector('span').innerHTML = printableKeys[i].querySelector('span').innerHTML.toUpperCase();
+        for (let i = 0; i < keyboard.printableKeys.length; i += 1) {
+          keyboard.printableKeys[i].querySelector('span').innerHTML = keyboard.printableKeys[i].querySelector('span').innerHTML.toUpperCase();
         }
       }
     }
