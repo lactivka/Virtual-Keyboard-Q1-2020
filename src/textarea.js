@@ -15,6 +15,7 @@ export default class Textarea {
     this.textarea.focus();
   }
 
+  // print value to textarea in cursor's position
   print(value) {
     this.textarea.focus();
     const position = this.textarea.selectionStart;
@@ -24,6 +25,7 @@ export default class Textarea {
     this.textarea.setSelectionRange(position + value.length, position + value.length);
   }
 
+  // move cursor and text after cursor in textarea to new line
   newRow() {
     this.textarea.focus();
     const position = this.textarea.selectionStart;
@@ -31,6 +33,7 @@ export default class Textarea {
     this.textarea.setSelectionRange(position + 1, position + 1);
   }
 
+  // delete symbol in textarea
   delSymbol(symbol) {
     this.textarea.focus();
     const position = this.textarea.selectionStart;
@@ -52,6 +55,7 @@ export default class Textarea {
     }
   }
 
+  // move cursor according to pressed navigation arrow
   moveCursor(direction) {
     this.textarea.focus();
     const position = this.textarea.selectionStart;

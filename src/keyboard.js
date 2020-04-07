@@ -71,18 +71,20 @@ export default class Keyboard {
     }
   }
 
+  // add class pressed to key to make it pressed
   addPressed(key) {
     this.pressedKey = key;
     this.pressedKey.classList.add('pressed');
   }
 
+  // toggle class pressed
   togglePressed(key) {
     this.pressedKey = key;
     this.pressedKey.classList.toggle('pressed');
   }
 
+  // change current language and render new value to keys on keyboard
   changeLang() {
-    //const printableKeys = document.querySelectorAll('.print');
     this.currentKeys = this.currentKeys[0][0] === keysEn[0][0] ? keysRU : keysEn;
     this.renderNewRows(this.currentKeys);
     if (this.toUpper) {
@@ -92,6 +94,7 @@ export default class Keyboard {
     }
   }
 
+  // render new value to keys on keyboard from newRows parameter
   renderNewRows(newRows) {
     this.row = document.querySelectorAll('.row');
     for (let i = 0; i < this.row.length; i += 1) {
@@ -102,31 +105,43 @@ export default class Keyboard {
     }
   }
 
+  // handle pressed keys that do not print symbol to textarea
   doNotPrintAction(key, textAreaObj) {
     this.pressedKey = key;
-    //const printableKeys = document.querySelectorAll('.print');
 
+    // move cursor to new row when Enter is pressed
     if (this.pressedKey.classList.contains('Enter')) {
       textAreaObj.newRow();
     }
+
+    // add 4 spaces to textarea when Tab is pressed
     if (this.pressedKey.classList.contains('Tab')) {
       textAreaObj.print('    ');
     }
+
+    // delete symbol before cursor in textarea when Backspace is pressed
     if (this.pressedKey.classList.contains('Backspace')) {
       textAreaObj.delSymbol('prev');
     }
+
+    // delete symbol after cursor in textarea when Delete is pressed
     if (this.pressedKey.classList.contains('Delete')) {
       textAreaObj.delSymbol('next');
     }
+
+    // make symbols on keyboard keys uppercase when Shift is pressed
     if (this.pressedKey.classList.contains('ShiftLeft') || this.pressedKey.classList.contains('ShiftRight')) {
       this.currentKeysUp = this.currentKeys[0][0] === keysEn[0][0] ? keysEnUp : keysRUUp;
       this.renderNewRows(this.currentKeysUp);
+      // make symbols on keyboard keys lowercase if CapsLock is pressed too
       if (this.toUpper) {
         for (let i = 0; i < this.printableKeys.length; i += 1) {
           this.printableKeys[i].querySelector('span').innerHTML = this.printableKeys[i].querySelector('span').innerHTML.toLowerCase();
         }
       }
     }
+
+    // navigate on text in textarea with navigation arrows
     if (this.pressedKey.classList.contains('ArrowUp')) {
       textAreaObj.moveCursor('up');
     }
@@ -139,6 +154,8 @@ export default class Keyboard {
     if (this.pressedKey.classList.contains('ArrowRight')) {
       textAreaObj.moveCursor('right');
     }
+
+    // change symbols on keyboard keys to uppercase/lowercase every time when CapsLock is pressed
     if (this.pressedKey.classList.contains('CapsLock')) {
       if (this.toUpper) {
         for (let i = 0; i < this.printableKeys.length; i += 1) {

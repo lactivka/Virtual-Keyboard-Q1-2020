@@ -9,7 +9,6 @@ export const keyboard = new Keyboard();
 export const isCapsPressed = false;
 
 // generate and render page elements
-
 export function init() {
   wrapper.className = 'wrapper';
   document.body.append(wrapper);
