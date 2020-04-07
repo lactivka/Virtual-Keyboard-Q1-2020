@@ -89,7 +89,9 @@ export default class Textarea {
           }
           break;
         case 'left':
-          this.textarea.setSelectionRange(position - 1, position - 1);
+          if (position > 0) {
+            this.textarea.setSelectionRange(position - 1, position - 1);
+          }
           break;
         case 'right':
           this.textarea.setSelectionRange(position + 1, position + 1);
