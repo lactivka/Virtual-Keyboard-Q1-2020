@@ -29,5 +29,5 @@ export function init() {
   const changeLangElem = document.createElement('p');
   changeLangElem.className = 'information';
   wrapper.append(changeLangElem);
-  changeLangElem.innerHTML = 'Для переключения языка комбинация клавиш: левые Ctrl + Shift';
+  changeLangElem.innerHTML = 'Для переключения языка комбинация клавиш: левые Ctrl + Alt';
 }
